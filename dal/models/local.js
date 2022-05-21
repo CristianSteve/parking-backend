@@ -2,30 +2,33 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class Profile extends Model {
+  class Local extends Model {
     static associate(models) {
-      Profile.hasMany(models.User, {
-        foreignKey: "idProfile",
-        as: "User",
+      Local.hasMany(models.Tarifa, {
+        foreignKey: "idLocal",
+        as: "Tarifa",
       });
-      Profile.belongsTo(models.Acceso, { as: "acceso", foreignKey: "idAcceso"});
     }
   }
-  Profile.init(
+  Local.init(
     {
       nombre: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(40),
+        allowNull: false,
+      },
+      direccion: {
+        type: DataTypes.STRING(30),
         allowNull: false,
       },
       estado: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-      },
+      }
     },
     {
       sequelize,
-      modelName: "Profile",
+      modelName: "Local",
     }
   );
-  return Profile;
+  return Local;
 };
