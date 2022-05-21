@@ -1,6 +1,6 @@
 const BaseBusiness = require("./base.business");
 const mapper = require("automapper-js");
-const { UserAuth, User, Perfil } = require("./models");
+const { User } = require("./models");
 
 class UserBusiness extends BaseBusiness {
   constructor({ UserRepository,}) {

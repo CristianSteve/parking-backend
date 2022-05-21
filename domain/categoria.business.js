@@ -3,11 +3,11 @@ const BaseBusiness = require("./base.business");
 const { Categoria } = require("./models");
 
 
-class UserBusiness extends BaseBusiness {
+class CategoriaBusiness extends BaseBusiness {
   constructor({ CategoriaRepository,}) {
     super(CategoriaRepository, Categoria);
     this._entityRepository = CategoriaRepository;
   }
 }
 
-module.exports = UserBusiness;
+module.exports = CategoriaBusiness;

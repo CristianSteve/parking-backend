@@ -1,4 +1,4 @@
-class User{
+class User {
   id = 0;
   username = "";
   email = "";
@@ -9,6 +9,6 @@ class User{
   status = false;
   Area_idArea = "";
   idProfile = "";
-  }
-  
-  module.exports = User;  
+}
+
+module.exports = User;
