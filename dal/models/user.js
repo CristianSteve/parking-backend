@@ -4,15 +4,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-/*       User.hasOne(models.Configuracion, {
-        foreignKey: "idUser",
-        as: "Configuracion",
-        onDelete: "CASCADE"
-      });
-      User.hasMany(models.CodeUser,{
-        foreignKey: "idUserFrom",
-        as : "CodeUser"
-      })  */
       User.hasMany(models.Vehiculo, {
         foreignKey: "idUser",
         as: "Vehiculo",
@@ -26,10 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: "nombre_UNIQUE"
     },
+    cedula : {
+      type: DataTypes.STRING(15),
+      allowNull: false,
+      unique: "cedula_UNIQUE"
+    },
     email: {
       type: DataTypes.STRING(60),
       allowNull: false,
-      unique: "nombre_UNIQUE"
+      unique: "email_UNIQUE"
     },
     password: {
       type: DataTypes.STRING(18),
