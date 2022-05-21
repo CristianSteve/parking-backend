@@ -24,11 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       puertas: {
         type: DataTypes.INTEGER,
         allowNull: true,
-      },
-      tipo: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-      },
+      }
     },
     {
       sequelize,

@@ -1,4 +1,4 @@
-class Acceso {
+class Factura {
   id = 0;
   fechaIngreso = "";
   fechaSalida = "";
@@ -6,4 +6,4 @@ class Acceso {
   idVehiculo = "";
 }
 
-module.exports = Acceso;
+module.exports = Factura;
