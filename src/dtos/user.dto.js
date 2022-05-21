@@ -1,13 +1,14 @@
-class User{
-    id = 0;
-    username = "";
-    email = "";
-    password = "";
-    nombre = "";
-    direccion = "";
-    celular = "";
-    estado = true;
-    idProfile = 1;
-  }
-  
-  module.exports = User;
+class User {
+  id = 0;
+  username = "";
+  cedula = 0;
+  email = "";
+  password = "";
+  nombre = "";
+  direccion = "";
+  celular = "";
+  estado = true;
+  idProfile = 0;
+}
+
+module.exports = User;

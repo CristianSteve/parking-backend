@@ -2,7 +2,7 @@ class Local {
   id = 0;
   nombre = "";
   direccion = "";
-  estado = "";
+  estado = true;
 }
 
 module.exports = Local;

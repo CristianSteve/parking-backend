@@ -40,8 +40,8 @@ class CategoriaController {
         let categoria = await this._categoriaService.create(dtoCategoria);
         categoria = await this._mapper(CategoriaDto, categoria);
         res.status(200).json({message: "Categoria creado", data : categoria})
-      }catch{
-        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico"})
+      }catch(e){
+        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico", sqlError : e?.parent?.sqlMessage})
       }
     }
   }

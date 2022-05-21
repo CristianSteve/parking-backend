@@ -30,18 +30,22 @@ class TipoVehiculoController {
 
   async createTipoVehiculo(req, res){
     const newTipoVehiculo = req.body; 
-    const { tipo } = newTipoVehiculo;
-    const error = "Parametros obligatorios no informados"
-    if(!tipo){
-      res.status(400).json({message : `tipo de tipoVehiculo no informado`,error})
+    const { marca, modelo, puertas } = newTipoVehiculo;
+    const error = "Parametros obligatorios no informados";
+    let campo = "";
+    if (!marca) campo = "marca";
+    else if (!modelo) campo = "modelo";
+    else if (!puertas && puertas !== 0) campo = "puertas";
+    if (!!campo) {
+      res.status(400).json({message : `${campo} del vehiculo no informado`,error})
     }else{
       try{
         const dtoTipoVehiculo = await this._mapper(TipoVehiculoDto, newTipoVehiculo);
         let tipoVehiculo = await this._tipoVehiculoService.create(dtoTipoVehiculo);
         tipoVehiculo = await this._mapper(TipoVehiculoDto, tipoVehiculo);
         res.status(200).json({message: "TipoVehiculo creado", data : tipoVehiculo})
-      }catch{
-        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico"})
+      }catch(e){
+        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico",sqlError : e?.parent?.sqlMessage})
       }
     }
   }

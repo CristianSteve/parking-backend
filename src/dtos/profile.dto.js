@@ -1,7 +1,7 @@
 class Profile {
   id = 0;
   nombre = "";
-  estado = "";
+  estado = true;
 }
 
 module.exports = Profile;

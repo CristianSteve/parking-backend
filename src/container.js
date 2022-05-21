@@ -9,27 +9,27 @@ const config = require("../config/environments");
 
 //Routers
 const Routes = require("./routers");
-const AccesoRoutes = require("./routers/categoria.routes");
+const AccesoRoutes = require("./routers/acceso.routes");
 const CategoriaRoutes = require("./routers/categoria.routes");
-const FacturaRoutes = require("./routers/categoria.routes");
-const LocalRoutes = require("./routers/categoria.routes");
-const ProfileRoutes = require("./routers/categoria.routes");
-const TarifaRoutes = require("./routers/categoria.routes");
-const TipoVehiculoRoutes = require("./routers/categoria.routes");
+const FacturaRoutes = require("./routers/factura.routes");
+const LocalRoutes = require("./routers/local.routes");
+const ProfileRoutes = require("./routers/profile.routes");
+const TarifaRoutes = require("./routers/tarifa.routes");
+const TipoVehiculoRoutes = require("./routers/tipoVehiculo.routes");
 const UserRoutes = require("./routers/user.routes");
-const VehiculoRoutes = require("./routers/categoria.routes");
+const VehiculoRoutes = require("./routers/vehiculo.routes");
 
 //controllers
 const { UserController,AccesoController, CategoriaController, FacturaController,LocalController,ProfileController,TarifaController,TipoVehiculoController,VehiculoController} = require("./controllers");
 
 //services
-const { UserService, CategoriaService } = require("../services");
+const { UserService, AccesoService, CategoriaService, FacturaService, LocalService,ProfileService,TarifaService,TipoVehiculoService, VehiculoService } = require("../services");
 
 //business
-const { UserBusiness, CategoriaBusiness } = require("../domain/");
+const { UserBusiness, AccesoBusiness, CategoriaBusiness, FacturaBusiness, LocalBusiness, ProfileBusiness, TarifaBusiness, TipoVehiculoBusiness, VehiculoBusiness } = require("../domain/");
 
 //repositories
-const { UserRepository, CategoriaRepository } = require("../dal/repositories");
+const { UserRepository, AccesoRepository, CategoriaRepository, FacturaRepository, LocalRepository, ProfileRepository, TarifaRepository, TipoVehiculoRepository, VehiculoRepository } = require("../dal/repositories");
 
 //db
 const db = require("../dal/models");
@@ -69,16 +69,37 @@ container
     db: asValue(db),
   })
   .register({
-    UserService: asClass(UserService).singleton(),
+    AccesoService: asClass(AccesoService).singleton(),
     CategoriaService: asClass(CategoriaService).singleton(),
+    FacturaService: asClass(FacturaService).singleton(),
+    LocalService: asClass(LocalService).singleton(),
+    ProfileService: asClass(ProfileService).singleton(),
+    TarifaService: asClass(TarifaService).singleton(),
+    TipoVehiculoService: asClass(TipoVehiculoService).singleton(),
+    UserService: asClass(UserService).singleton(),
+    VehiculoService: asClass(VehiculoService).singleton(),
   })
   .register({
-    UserRepository: asClass(UserRepository).singleton(),
+    AccesoRepository: asClass(AccesoRepository).singleton(),
     CategoriaRepository: asClass(CategoriaRepository).singleton(),
+    FacturaRepository: asClass(FacturaRepository).singleton(),
+    LocalRepository: asClass(LocalRepository).singleton(),
+    ProfileRepository: asClass(ProfileRepository).singleton(),
+    TarifaRepository: asClass(TarifaRepository).singleton(),
+    TipoVehiculoRepository: asClass(TipoVehiculoRepository).singleton(),
+    UserRepository: asClass(UserRepository).singleton(),
+    VehiculoRepository: asClass(VehiculoRepository).singleton(),
   })
   .register({
-    UserBusiness: asClass(UserBusiness).singleton(),
+    AccesoBusiness: asClass(AccesoBusiness).singleton(),
     CategoriaBusiness: asClass(CategoriaBusiness).singleton(),
+    FacturaBusiness: asClass(FacturaBusiness).singleton(),
+    LocalBusiness: asClass(LocalBusiness).singleton(),
+    ProfileBusiness: asClass(ProfileBusiness).singleton(),
+    TarifaBusiness: asClass(TarifaBusiness).singleton(),
+    TipoVehiculoBusiness: asClass(TipoVehiculoBusiness).singleton(),
+    UserBusiness: asClass(UserBusiness).singleton(),
+    VehiculoBusiness: asClass(VehiculoBusiness).singleton(),
   });
 
 module.exports = container;

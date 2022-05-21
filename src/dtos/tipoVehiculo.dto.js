@@ -1,9 +1,8 @@
 class TipoVehiculo {
     id = 0;
     marca = "";
-    tipo = "";
+    modelo = "";
     puertas = 0;
-    idCategoria = 0;
   }
   
   module.exports = TipoVehiculo;

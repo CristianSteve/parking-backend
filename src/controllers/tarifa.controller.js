@@ -1,5 +1,5 @@
 const mapper = require("automapper-js");
-const { TarifaDto } = require("../dtos");
+const { TaridaDto } = require("../dtos");
 
 class TarifaController {
   constructor({ TarifaService }) {
@@ -9,14 +9,14 @@ class TarifaController {
 
   async getAll(req, res){
     let tarifa = await this._tarifaService.getAll();
-    tarifa = await this._mapper(TarifaDto, tarifa);
+    tarifa = await this._mapper(TaridaDto, tarifa);
     return res.json({data : tarifa})
   }
 
   async getTarifa(req, res){
     const { id } = req.params;
     let tarifa = await this._tarifaService.get(id);
-    tarifa = mapper(TarifaDto, tarifa);
+    tarifa = mapper(TaridaDto, tarifa);
     return res.json({data : tarifa})
   }
 
@@ -30,18 +30,24 @@ class TarifaController {
 
   async createTarifa(req, res){
     const newTarifa = req.body; 
-    const { tipo } = newTarifa;
+    const { tipoAutomotor, valorMinuto, valorDia, valorMes, idLocal } = newTarifa;
     const error = "Parametros obligatorios no informados"
-    if(!tipo){
-      res.status(400).json({message : `tipo de tarifa no informado`,error})
+    let campo = "";
+    if (!tipoAutomotor) campo = "tipoAutomotor";
+    else if (!valorMinuto) campo = "valorMinuto";
+    else if (!valorDia) campo = "ValorDia";
+    else if (!valorMes) campo = "ValorMes";
+    else if (!idLocal) campo = "idLocal";
+    if(!!campo){
+      res.status(400).json({message : `${campo} de tarifa no informado`,error})
     }else{
       try{
-        const dtoTarifa = await this._mapper(TarifaDto, newTarifa);
+        const dtoTarifa = await this._mapper(TaridaDto, newTarifa);
         let tarifa = await this._tarifaService.create(dtoTarifa);
-        tarifa = await this._mapper(TarifaDto, tarifa);
+        tarifa = await this._mapper(TaridaDto, tarifa);
         res.status(200).json({message: "Tarifa creado", data : tarifa})
-      }catch{
-        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico"})
+      }catch(e){
+        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico", sqlError : e?.parent?.sqlMessage})
       }
     }
   }

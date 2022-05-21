@@ -30,18 +30,18 @@ class ProfileController {
 
   async createProfile(req, res){
     const newProfile = req.body; 
-    const { tipo } = newProfile;
+    const { nombre, idAcceso } = newProfile;
     const error = "Parametros obligatorios no informados"
-    if(!tipo){
-      res.status(400).json({message : `tipo de profile no informado`,error})
+    if(!nombre || !idAcceso){
+      res.status(400).json({message : `nombre o acceso del profile no informado`,error})
     }else{
       try{
         const dtoProfile = await this._mapper(ProfileDto, newProfile);
         let profile = await this._profileService.create(dtoProfile);
         profile = await this._mapper(ProfileDto, profile);
         res.status(200).json({message: "Profile creado", data : profile})
-      }catch{
-        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico"})
+      }catch(e){
+        res.status(409).json({code: "PK600", message : "Se ha produccido un error tecnico", sqlError : e?.parent?.sqlMessage})
       }
     }
   }
