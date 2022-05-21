@@ -6,8 +6,8 @@ class User{
     nombre = "";
     direccion = "";
     celular = "";
-    estado = false;
-    idProfile = "";
+    estado = true;
+    idProfile = 1;
   }
   
   module.exports = User;

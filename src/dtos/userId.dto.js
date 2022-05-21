@@ -5,6 +5,7 @@ class UserId{
     password = "";
     direccion = "";
     celular = "";
+    idProfile = 0;
   }
   
   module.exports = UserId;
