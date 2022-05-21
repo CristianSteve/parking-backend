@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "idTipoVehiculo",
         as: "Vehiculo",
       });
+      TipoVehiculo.belongsTo(models.Categoria, { as: "categoria", foreignKey: "idCategoria"});
     }
   }
   TipoVehiculo.init(
@@ -15,6 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       marca: {
         type: DataTypes.STRING(20),
         allowNull: false,
+      },
+      modelo: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+      },
+      puertas: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
       tipo: {
         type: DataTypes.STRING(20),
