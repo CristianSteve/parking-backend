@@ -1,6 +1,6 @@
 const mapper = require("automapper-js");
 const { AccesoDto } = require("../dtos");
-
+ 
 class AccesoController {
   constructor({ AccesoService }) {
     this._accesoService = AccesoService;
